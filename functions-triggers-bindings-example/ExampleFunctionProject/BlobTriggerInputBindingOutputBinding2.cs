@@ -10,6 +10,8 @@ namespace ExampleFunctionProject
 {
     public static class BlobTriggerInputBindingOutputBinding2
     {
+        private const char SPACE = ' ';
+
         [FunctionName("BlobTriggerInputBindingOutputBinding2")]
         public static async Task Run(
             [BlobTrigger("upload/{name}", Connection = "scs")]Stream addedBlob,
@@ -21,7 +23,7 @@ namespace ExampleFunctionProject
             {
                 // The ServiceBus Output binding using an ICollector<T> which enables you to write a 
                 // message to the queue/topic you bind to EACH TIME YOU CALL Add()!
-                var words = (await reader.ReadToEndAsync()).Split(' ');
+                var words = (await reader.ReadToEndAsync()).Split(SPACE);
                 Parallel.ForEach(words.Distinct(), (word) =>
                 {
                     queueCollector.Add(word);
