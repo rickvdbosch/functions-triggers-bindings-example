@@ -22,7 +22,7 @@ namespace ExampleFunctionProject
             using (var reader = new StreamReader(addedBlob))
             {
                 // The ServiceBus Output binding using an ICollector<T> which enables you to write a 
-                // message to the queue/topic you bind to EACH TIME YOU CALL Add()!
+                // message to the queue/topic you bind to EACH TIME YOU CALL the Add() method!
                 var words = (await reader.ReadToEndAsync()).Split(SPACE);
                 Parallel.ForEach(words.Distinct(), (word) =>
                 {

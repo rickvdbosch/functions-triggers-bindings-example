@@ -14,8 +14,8 @@ namespace ExampleFunctionProject
             Binder binder, ILogger log)
         {
             // And if you want to determine where to bind at runtime, for instance to make the
-            // decision for one container or the other, you can use the Binder class to bind
-            // dynamically!
+            // decision for one container or the other in code, you can use the Binder class to 
+            // bind dynamically!
             log.LogInformation("Dynamic output binding");
             BlobAttribute blobAttribute;
             if (addedBlob.Length % 2 == 0)
