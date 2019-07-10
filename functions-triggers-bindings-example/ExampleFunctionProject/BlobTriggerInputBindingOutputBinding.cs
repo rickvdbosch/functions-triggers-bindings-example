@@ -15,7 +15,7 @@ namespace ExampleFunctionProject
             ILogger log)
         {
             // When using an Output binding, connecting to the storage account has been abstracted
-            // away: you can simply use the Stream called stream to write to.
+            // away: you can simply use the Stream called 'stream' to write to.
             log.LogInformation("We're starting our simple copy action here!");
             await addedBlob.CopyToAsync(stream);
         }
