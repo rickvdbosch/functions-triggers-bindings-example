@@ -25,6 +25,13 @@ need for that is calling the `Add()` method on the `ICollector<T>`.
 
 Dynamic output binding by using the `Binder` class. 
 
+#### HttpTriggerReturnBinding
+
+The HttpTrigger isn't bound to a generic `HttpRequest`, but is TYPED to a `RequestModel`. The platform takes care of the deserialization of the message body for you.  
+The return binding above the Function does a couple of things for you:
+- It creates a Blob in the 'copied' container with a random GUID as the filename
+- It automatically writes the output of the Function call into that Blob
+
 ## Accompanying blog posts:
 
 Here are some blog posts giving more context and explaining the examples a bit more:
