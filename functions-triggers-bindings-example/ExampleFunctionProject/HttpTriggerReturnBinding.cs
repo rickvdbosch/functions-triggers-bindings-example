@@ -1,10 +1,11 @@
+using System.Threading.Tasks;
+using System.Threading;
+
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
 using ExampleFunctionProject.Models;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace ExampleFunctionProject
 {

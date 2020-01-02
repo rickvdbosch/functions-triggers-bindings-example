@@ -33,10 +33,8 @@ namespace ExampleFunctionProject
             }
 
             // Use the dynamically created binding to bind and then use the stream.
-            using (var output = await binder.BindAsync<Stream>(blobAttribute))
-            {
-                await addedBlob.CopyToAsync(output);
-            }
+            using var output = await binder.BindAsync<Stream>(blobAttribute);
+            await addedBlob.CopyToAsync(output);
         }
     }
 }
