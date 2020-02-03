@@ -33,9 +33,19 @@ The return binding above the Function does a couple of things for you:
 - It creates a Blob in the 'copied' container with a random GUID as the filename
 - It automatically writes the output of the Function call into that Blob
 
+## HttpTriggerPropertyBinding
+
+The HttpTrigger isn't bound to a generic `HttpRequest`, but is TYPED to a `RequestModel`. The platform takes care of the deserialization of the message body for you.  
+The blob binding above the Function does a couple of things for you:
+
+- It creates a Blob in the 'properties' container with the value of the `Identifier` property as the filename
+- It writes the message of the posted model into that Blob
+
+
 ## Accompanying blog posts:
 
 Here are some blog posts giving more context and explaining the examples a bit more:
 
 - [Using Triggers & Bindings in Azure Functions V2](https://www.rickvandenbosch.net/blog/using-triggers-bindings-in-azure-functions-v2/)
 - [Dynamic output bindings in Azure Functions](https://www.rickvandenbosch.net/blog/dynamic-output-bindings-in-azure-functions/)
+- [Azure Functions: Binding to a property](https://www.rickvandenbosch.net/blog/azure-functions-binding-to-a-property/)
