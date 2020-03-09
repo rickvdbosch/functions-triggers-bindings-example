@@ -1,13 +1,9 @@
-using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
 
-using ExampleFunctionProject.Helpers;
 using ExampleFunctionProject.Models;
 
 namespace ExampleFunctionProject
@@ -15,14 +11,17 @@ namespace ExampleFunctionProject
     public static class HttpTriggerTableInputBinding3
     {
         [FunctionName(nameof(HttpTriggerTableInputBinding3))]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-            [Table(nameof(SomeEntity), SomeEntity.PARTITION_KEY, Connection = "scs")] CloudTable table,
+        public static IActionResult Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "entities/{rowKey}")] HttpRequest req,
+            [Table(nameof(SomeEntity), SomeEntity.PARTITION_KEY, "{rowKey}", Connection = "scs")] SomeEntity entity,
             ILogger log)
         {
-            var result = await TableStorageHelper.GetEntitiesFromTable<SomeEntity>(table);
-
-            return new OkObjectResult(result);
+            // The rowKey specified in the URL for the HttpTrigger is used as the value for the 
+            // row key of the entity in the specified partition key we would like to retrieve.
+            // 
+            // The platform extracts away EVERYTHING about connecting to Table Storage and provides an 
+            // instance of SomeEntity with the specified PartitionKey and RowKey.
+            return new OkObjectResult(entity);
         }
     }
 }
