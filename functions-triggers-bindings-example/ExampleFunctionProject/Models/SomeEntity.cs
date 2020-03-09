@@ -7,7 +7,7 @@ namespace ExampleFunctionProject.Models
     {
         #region Fields
 
-        private const string PARTITION_KEY = "SomeEntities";
+        public const string PARTITION_KEY = "<PARTITION-KEY>";
 
         #endregion
 
