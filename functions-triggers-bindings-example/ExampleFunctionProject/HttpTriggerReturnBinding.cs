@@ -1,6 +1,3 @@
-using System.Threading.Tasks;
-using System.Threading;
-
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
@@ -13,10 +10,9 @@ namespace ExampleFunctionProject
     {
         [FunctionName(nameof(HttpTriggerReturnBinding))]
         [return: Blob("copied/{sys.randguid}.txt", Connection = "scs")]
-        public static async Task<string> Run(
+        public static string Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] RequestModel req,
-            ILogger log,
-            CancellationToken cancellationToken)
+            ILogger log)
         {
             // There are two important things here:
             // 1. The HttpTrigger isn't bound to a generic HttpRequest, but is TYPED.
